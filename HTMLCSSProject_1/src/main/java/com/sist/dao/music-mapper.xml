@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+	PreparedStatement
+	ResultSet
+	SQL => VO
+	
+	예) 
+		SELECT pwd FROM member => resultType="String"
+		SELECT COUNT(*) FROM member => resultType="int"
+		
+	parameterType : ?에 값을 지정
+		INSERT INTO member VALUES(?,?,?,?,?,?)
+		(?,?,?,?,?,?) => Member VO로 값 채우기
+		
+		SELECT * FROM music
+		WHERE column LIKE '%검색어%'
+		WHERE ? LIKE '%?%' ==> Map
+			  title
+			  singer
+			  album
+ -->
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com/sist/dao/music-mapper">
+	<!-- 
+		namespace : package 
+		id : SQL 문장의 구분자 
+			=> 중복되면 안 된다
+	-->
+	<select id="musicListData" resultType="MusicVO" parameterType="int">
+		SELECT no,cno,poster,title,singer 
+		FROM genie_music 
+		WHERE cno=#{cno}
+		ORDER BY no
+	</select>
+</mapper>
