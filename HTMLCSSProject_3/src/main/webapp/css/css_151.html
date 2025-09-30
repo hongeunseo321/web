@@ -1,0 +1,55 @@
+<!-- 
+    색상 / URL 단위 
+    색상 단위 
+     => color : 글자 색상 
+        background-color : 바탕 색상 
+        
+        background-color: 등록된 색상 
+                          white / orange ...
+        background-color: rgb(255,255,255) 
+        background-color: #9D8ACC => HTML 색상표  
+        background-color:rgba(255,255,255,0.1)
+                            -- 알파 (투명) => 0.0~1.0
+ -->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+p:nth-child(1) {
+	background-color: red;
+	color:white;
+}
+p:nth-child(2) {
+	font-size: 1.5em;
+	background-color: rgb(0,0,255);
+}
+p:nth-child(3) {
+	font-size: 2em;
+	background-color: #00FF00;
+}
+p:nth-child(4) {
+	font-size: 150%;
+	background-color: rgba(0,0,0,0.1);
+}
+div {
+  width: 500px;
+  height: 500px;
+  background-color: #FF00FF;
+}
+h1 {
+  color:white;
+}
+</style>
+</head>
+<body>
+  <p>샌프란시스코, 멜빈 감독 전격 경질</p>
+  <p>이정후, 보치 감독과 만나나</p>
+  <p>올시즌 81승 81패로 내셔널리그 서부지구 3위</p>
+  <p>2003년 시애틀 매리너스에서 MLB 감독 경력을 시작</p>
+  <div>
+    <h1>미네소타는 지구 4위(70승 92패)</h1>
+  </div>
+</body>
+</html>
