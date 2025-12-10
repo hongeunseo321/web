@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>카카오 로그인 예제</title>
+  <!-- 카카오 SDK 불러오기 -->
+  <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin-top: 50px;
+    }
+    #kakao-login-btn, #logout-btn {
+      padding: 10px 20px;
+      font-size: 16px;
+      margin: 10px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    #kakao-login-btn {
+      background-color: #fee500;
+      color: #3c1e1e;
+    }
+    #logout-btn {
+      background-color: #444;
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+  <h1>카카오 로그인 데모</h1>
+  <button id="kakao-login-btn">카카오 로그인</button>
+  <button id="logout-btn">로그아웃</button>
+  <div id="user-info"></div>
+
+  <script>
+    // 1. SDK 초기화 (여기에 본인 JavaScript 키 입력)
+    Kakao.init("72fa81817487692b6dc093004af97650");
+    console.log("Kakao SDK 초기화:", Kakao.isInitialized());
+
+    // 2. 로그인 버튼 이벤트
+    document.getElementById("kakao-login-btn").addEventListener("click", function () {
+      Kakao.Auth.login({
+        scope: "profile_nickname, account_email", // 동의항목
+        success: function (authObj) {
+          console.log("로그인 성공", authObj);
+
+          // 사용자 정보 요청
+          Kakao.API.request({
+            url: "/v2/user/me",
+            success: function (res) {
+              const kakao_account = res.kakao_account;
+              console.log("사용자 정보", kakao_account);
+
+              document.getElementById("user-info").innerHTML = `
+                <p><b>닉네임:</b> ${kakao_account.profile.nickname}</p>
+                <p><b>이메일:</b> ${kakao_account.email ?? "제공 안 함"}</p>
+              `;
+            },
+            fail: function (error) {
+              console.error("사용자 정보 요청 실패", error);
+            }
+          });
+        },
+        fail: function (err) {
+          console.error("로그인 실패", err);
+        }
+      });
+    });
+
+    // 3. 로그아웃 버튼 이벤트
+    document.getElementById("logout-btn").addEventListener("click", function () {
+      if (!Kakao.Auth.getAccessToken()) {
+        alert("현재 로그인 상태가 아닙니다.");
+        return;
+      }
+      Kakao.Auth.logout(function () {
+        document.getElementById("user-info").innerHTML = "";
+        alert("로그아웃 완료");
+      });
+    });
+  </script>
+</body>
+</html>

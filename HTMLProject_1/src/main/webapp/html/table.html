@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f4f4;
+      padding: 20px;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse; /* 테이블 경계 겹치지 않게 */
+      background: #fff;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    thead {
+      background: #007bff;
+      color: #fff;
+    }
+
+    th, td {
+      padding: 12px 15px;
+      text-align: left;
+    }
+
+    tbody tr:nth-child(even) {
+      background: #f9f9f9; /* 짝수 행 배경색 */
+    }
+
+    tbody tr:hover {
+      background: #e0f0ff; /* 마우스 오버 효과 */
+    }
+
+    th {
+      font-weight: bold;
+    }
+
+    /* 반응형 테이블 */
+    @media (max-width: 600px) {
+      table, thead, tbody, th, td, tr {
+        display: block;
+      }
+
+      thead tr {
+        display: none; /* 헤더 숨김 */
+      }
+
+      tbody tr {
+        margin-bottom: 15px;
+        border-bottom: 2px solid #ddd;
+        padding: 10px;
+      }
+
+      td {
+        padding: 8px;
+        text-align: right;
+        position: relative;
+      }
+
+      td::before {
+        content: attr(data-label); /* 헤더 정보 표시 */
+        position: absolute;
+        left: 10px;
+        font-weight: bold;
+        text-align: left;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h2>예쁜 테이블</h2>
+
+  <table>
+    <thead>
+      <tr>
+        <th>번호</th>
+        <th>상품명</th>
+        <th>수량</th>
+        <th>가격</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td data-label="번호">1</td>
+        <td data-label="상품명">노트북</td>
+        <td data-label="수량">2</td>
+        <td data-label="가격">₩1,200,000</td>
+      </tr>
+      <tr>
+        <td data-label="번호">2</td>
+        <td data-label="상품명">마우스</td>
+        <td data-label="수량">1</td>
+        <td data-label="가격">₩25,000</td>
+      </tr>
+      <tr>
+        <td data-label="번호">3</td>
+        <td data-label="상품명">키보드</td>
+        <td data-label="수량">1</td>
+        <td data-label="가격">₩45,000</td>
+      </tr>
+      <tr>
+        <td data-label="번호">4</td>
+        <td data-label="상품명">모니터</td>
+        <td data-label="수량">2</td>
+        <td data-label="가격">₩320,000</td>
+      </tr>
+    </tbody>
+  </table>
+</body>
+</html>

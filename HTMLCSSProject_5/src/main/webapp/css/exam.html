@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>CSS 위치 속성 예제</title>
+<style>
+.container {
+  border: 2px dashed gray;
+  margin: 30px;
+  height: 250px;
+  position: relative; /* absolute 비교용 */
+  padding: 10px;
+}
+
+.box {
+  width: 100px;
+  height: 50px;
+  color: #fff;
+  font-weight: bold;
+  line-height: 50px;
+  text-align: center;
+  margin: 5px;
+}
+
+.static { background: #ff6f61; position: static; }
+.relative { background: #6fa8dc; position: relative; top: 20px; left: 30px; }
+.absolute { background: #93c47d; position: absolute; top: 40px; left: 150px; }
+.fixed { background: #f6b26b; position: fixed; top: 10px; right: 10px; z-index: 1000; }
+.sticky { background: #8e7cc3; position: sticky; top: 0; }
+
+.scroll-area {
+  height: 300px;
+  overflow: auto;
+  border: 2px solid #aaa;
+  margin-top: 50px;
+  padding: 10px;
+}
+.scroll-content {
+  height: 600px;
+}
+</style>
+</head>
+<body>
+
+<h1>CSS 위치 속성 예제</h1>
+
+<h2>1. static (기본)</h2>
+<div class="container">
+  <div class="box static">static</div>
+</div>
+<p>문서의 기본 흐름에 따라 배치, <code>top/left</code> 적용 안됨</p>
+
+<h2>2. relative</h2>
+<div class="container">
+  <div class="box relative">relative</div>
+</div>
+<p>원래 자리에서 <code>top:20px; left:30px;</code> 만큼 이동</p>
+
+<h2>3. absolute</h2>
+<div class="container">
+  <div class="box absolute">absolute</div>
+</div>
+<p>가장 가까운 <code>position: relative</code> 조상을 기준으로 위치</p>
+
+<h2>4. fixed</h2>
+<div class="container">
+  <div class="box fixed">fixed</div>
+</div>
+<p>브라우저 화면을 기준으로 고정 (스크롤해도 움직이지 않음)</p>
+
+<h2>5. sticky</h2>
+<div class="scroll-area">
+  <div class="box sticky">sticky</div>
+  <div class="scroll-content">
+    스크롤을 내려보세요!<br><br>
+    sticky 박스는 스크롤할 때 원래 위치에서 움직이다가,<br>
+    <b>top:0</b>에 도달하면 고정됩니다.
+  </div>
+</div>
+
+</body>
+</html>
